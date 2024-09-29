@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main %}
+ <div class="content">
+    <h1>Expenses</h1>
+    <form action="{{ url_for('add_expense') }}" method="POST" class="row g-3">
+        <input type="text" name="amount" id="amount" value="{{request.form.amount}}" placeholder="Type the amount of money" />
+        <select name="category" id="expenses_types">
+            <option value="">--SELECT A TYPE--</option>
+            {% for type in types.values() %}
+            <option value="{{ type.description }}">{{ type.description }}</option>
+            {% endfor %}
+            
+        </select>
+        <input type="date" name="date" value="{{request.form.date}}" />
+        <input type="text" name="msg" placeholder="Example: Rent" value="{{request.form.msg}}" />
+        <button type="submit" class="btn btn-primary">ADD</button>
+    </form>
+    {% if errors: %}
+        <div class="errors">
+            <ul>
+                {% for error in errors %}
+                    <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <div class="">
+        <table class="table table-hover expense_table">
+            <thead>
+                <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses.values() %}
+                    <tr>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.msg }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ </div>
+{% endblock %}

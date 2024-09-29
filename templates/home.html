@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="content">
+    <div class="col-5 offset-2 my-5">
+        <div class="card">
+            <div class="card-body">
+                <h5>Expenses Chart</h5>
+                <hr>
+                <canvas id="expenses_chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-5 offset-2 my-5">
+        <div class="card">
+            <div class="card-body">
+                <h5>Incomes Chart</h5>
+                <hr>
+                <canvas id="incomes_chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
