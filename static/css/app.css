@@ -14,14 +14,17 @@ main {
 
 form {
     width: 250px;
-    margin-bottom: 50px;
 }
 
 input,
 textarea,
 button,
 select {
-    margin-left: 110px;
+    margin-left: 85px;
+}
+
+.errors {
+    margin-left: 44px;
 }
 
 .content table {
@@ -36,18 +39,27 @@ select {
     font-size: 13px;
 }
 
+.errors ul li{
+    color: red;
+    font-size: 12px;
+    list-style-type: none;
+}
+
 /* Small devices such as large phones (640px and up) */
 @media only screen and (min-width: 640px) {
     form {
             width: 300px;
-            margin-bottom: 50px;
-        }
+    }
 
     input,
     textarea,
     button,
     select {
         margin-left: 88px;
+    }
+
+    .errors {
+        margin-left: 0px;
     }
 
     .content table {
@@ -79,6 +91,10 @@ select {
         width: 500px;
     }
 
+    .errors {
+        margin-left: 0px;
+    }
+
     input, 
     textarea, 
     button,
@@ -104,6 +120,10 @@ select {
         width: 900px;
         font-size: 18px;
     } 
+
+    .errors {
+        margin-left: -35px;
+    }
 
     input, 
     textarea, 
