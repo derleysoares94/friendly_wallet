@@ -1,6 +1,8 @@
 import json 
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 
+from datetime import datetime
+
 from models import Incomes, Expenses, ExpensesCategories
 
 app = Flask(__name__)
@@ -58,8 +60,10 @@ def add_income():
     if errors:
         return render_template('incomes.html', errors=errors, request=request, incomes=incomes_data)
     
+    date = datetime.strptime(date, "%Y-%m-%d")
+    formatted_date = date.strftime("%d/%m/%Y")
     new_id = len(incomes_data) + 1
-    incomes_data[new_id] = Incomes(new_id, amount, date, category).__dict__
+    incomes_data[new_id] = Incomes(new_id, amount, formatted_date, category).__dict__
     with open('static/incomes_data.json', 'w') as json_file:
         json.dump(incomes_data, json_file)
     
@@ -87,9 +91,11 @@ def add_expense():
         errors.append('The msg must be filled.')
     if errors:
         return render_template('expenses.html', errors=errors, request=request, types=expense_categories, expenses=expenses_data)
+    date = datetime.strptime(date, "%Y-%m-%d")
+    formatted_date = date.strftime("%d/%m/%Y")
     
     new_id = len(expenses_data) + 1
-    expenses_data[new_id] = Expenses(new_id, amount, category, date, msg).__dict__
+    expenses_data[new_id] = Expenses(new_id, amount, category, formatted_date, msg).__dict__
     
     with open('static/expenses_data.json', 'w') as json_file:
         json.dump(expenses_data, json_file)
