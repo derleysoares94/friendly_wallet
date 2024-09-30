@@ -49,9 +49,7 @@ def add_income():
     
     ##Validation
     errors = []
-    if not amount:
-        errors.append('The amount must be filled.')
-    if not isinstance(amount, int) and isinstance(amount, float):
+    if not amount.isdigit() and not isinstance(amount, float):
         errors.append('The amount must be a number')
     if not date:
         errors.append('The date must be filled.')
@@ -79,9 +77,7 @@ def add_expense():
     
     ##Validation
     errors = []
-    if not amount:
-        errors.append('The amount must be filled.')
-    if not isinstance(amount, int) and isinstance(amount, float):
+    if not amount.isdigit() and not isinstance(amount, float):
         errors.append('The amount must be a number')
     if not category:
         errors.append('The category must be filled.')
