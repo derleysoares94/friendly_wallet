@@ -4,7 +4,7 @@
 <div class="content">
     <h1>Incomes</h1>
     <form action="{{ url_for('add_income') }}" method="POST" class="row g-3 form_incomes">
-        <input type="text" name="amount" id="amount" value="{{request.form.amount}}" placeholder="Type the amount of money" />
+        <input type="number" name="amount" id="amount" value="{{request.form.amount}}" placeholder="Type the amount of money" />
         <input type="date" name="date" value="{{request.form.date}}" />
         <input type="text" name="category" value="{{request.form.category}}" placeholder="write the type of the income. Ex: Sallary"></input>
         <button type="submit" class="btn btn-primary add">ADD</button>

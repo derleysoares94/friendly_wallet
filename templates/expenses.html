@@ -4,7 +4,7 @@
  <div class="content">
     <h1>Expenses</h1>
     <form action="{{ url_for('add_expense') }}" method="POST" class="row g-3 form_expenses">
-        <input type="text" name="amount" id="amount" value="{{request.form.amount}}" placeholder="Type the amount of money" />
+        <input type="number" name="amount" id="amount" value="{{request.form.amount}}" placeholder="Type the amount of money" />
         <select name="category" id="expenses_types">
             <option value="">--SELECT A TYPE--</option>
             {% for type in types.values() %}

@@ -1,4 +1,5 @@
 import json 
+import re
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 
 from datetime import datetime
@@ -49,7 +50,7 @@ def add_income():
     
     ##Validation
     errors = []
-    if not amount.isdigit() and not isinstance(amount, float):
+    if not re.match("^\d+\.?\d*$", amount):
         errors.append('The amount must be a number')
     if not date:
         errors.append('The date must be filled.')
@@ -77,7 +78,7 @@ def add_expense():
     
     ##Validation
     errors = []
-    if not amount.isdigit() and not isinstance(amount, float):
+    if not re.match("^\d+\.?\d*$", amount):
         errors.append('The amount must be a number')
     if not category:
         errors.append('The category must be filled.')
