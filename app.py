@@ -27,16 +27,19 @@ with open('static/expenses_data.json', 'w') as json_file:
 
 @app.route('/')
 def home():
+    """Render the home page"""
     return render_template('home.html', incomes=incomes_data, expenses=expenses_data)
 
 @app.route('/incomes')
 def incomes():
+    """Render the incomes page"""
     with open('static/incomes_data.json', 'r') as file:
         incomes = json.load(file)
     return render_template('incomes.html', incomes=incomes)
 
 @app.route('/expenses')
 def expenses():
+    """Render the expenses page"""
     with open('static/expenses_data.json', 'r') as json_file:
         expenses = json.load(json_file)
         
@@ -44,6 +47,7 @@ def expenses():
 
 @app.route('/incomes', methods=['POST'])
 def add_income():
+    """Add income to the json file incomes_data.json and redirect to the incomes page"""
     amount = request.form['amount']
     date = request.form['date']
     category = request.form['category']
@@ -70,7 +74,7 @@ def add_income():
 
 @app.route('/expenses', methods=['POST'])
 def add_expense():
-    
+    """Add expense to the json file expenses_data.json and redirect to the expenses page"""
     amount = request.form['amount']
     category = request.form['category']
     date = request.form['date']
