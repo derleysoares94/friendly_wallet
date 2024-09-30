@@ -16,11 +16,14 @@ form {
     width: 250px;
 }
 
-input,
-textarea,
-button,
-select {
+.form_incomes {
     margin-left: 85px;
+    font-size: small;
+}
+
+.form_expenses {
+    margin-left: 115px;
+    font-size: small;
 }
 
 .errors {
@@ -45,16 +48,18 @@ select {
     list-style-type: none;
 }
 
+.delete{
+    font-size: 12px;
+    width: 50px;
+}
+
 /* Small devices such as large phones (640px and up) */
 @media only screen and (min-width: 640px) {
     form {
             width: 300px;
     }
 
-    input,
-    textarea,
-    button,
-    select {
+    .form_incomes, .form_expenses {
         margin-left: 88px;
     }
 
@@ -95,10 +100,8 @@ select {
         margin-left: 0px;
     }
 
-    input, 
-    textarea, 
-    button,
-    select {
+    .form_incomes,
+    .form_expenses {
         margin-left: 155px;
     }
 }
@@ -125,10 +128,8 @@ select {
         margin-left: -35px;
     }
 
-    input, 
-    textarea, 
-    button,
-    select {
+    .form_incomes,
+    .form_expenses {
         margin-left: 0px;
     }
 }

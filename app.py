@@ -19,7 +19,6 @@ with open('static/incomes_data.json', 'w') as json_file:
     json.dump(incomes_data, json_file)
 
 expenses_data = {}
-
 with open('static/expenses_data.json', 'w') as json_file:
     json.dump(expenses_data, json_file)
 
@@ -29,7 +28,9 @@ def home():
 
 @app.route('/incomes')
 def incomes():
-    return render_template('incomes.html', incomes=incomes_data)
+    with open('static/incomes_data.json', 'r') as file:
+        incomes = json.load(file)
+    return render_template('incomes.html', incomes=incomes)
 
 @app.route('/expenses')
 def expenses():
@@ -95,5 +96,29 @@ def add_expense():
     
     return redirect(url_for('expenses'))
     
+@app.route('/delete_income/<id>', methods=['POST'])
+def delete_income(id):
+    """Delete income"""
+    with open('static/incomes_data.json', 'r') as file:
+        data = json.load(file)
+        del data[id]
+    incomes_data.clear()
+    with open('static/incomes_data.json', 'w') as file:
+        json.dump(data, file)
+        
+    return redirect(url_for('incomes'))
+
+@app.route('/delete_expenses/<id>', methods=['POST'])
+def delete_expenses(id):
+    """Delete expenses"""
+    with open('static/expenses_data.json', 'r') as file:
+        data = json.load(file)
+        del data[id]
+    expenses_data.clear()
+    with open('static/expenses_data.json', 'w') as file:
+        json.dump(data, file)
+        
+    return redirect(url_for('expenses'))
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4000)
